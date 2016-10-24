@@ -22,8 +22,7 @@ ADD supervisord.conf /etc/supervisor/
 ADD supervisor-lemp.conf /etc/supervisor/conf.d/
 
 # Create new MySQL admin user
-RUN service mysql start; mysql -u root -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'pass';";mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;";
-RUN  mysql -u root -e "CREATE DATABASE 'devless_production';" 
+RUN service mysql start; mysql -u root -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'pass';";mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;";mysql -u root -e "CREATE DATABASE 'devless_production';" 
 
 # MySQL configuration
 RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/my.cnf
