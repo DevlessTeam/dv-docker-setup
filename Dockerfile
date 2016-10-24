@@ -31,7 +31,7 @@ WORKDIR /var/www
 
 # Install software
 RUN apt-get install -y git
-curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Pull in DevLess
 RUN unlink /var/www/html
