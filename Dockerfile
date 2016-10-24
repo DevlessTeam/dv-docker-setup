@@ -1,5 +1,5 @@
 FROM linuxconfig/nginx
-MAINTAINER Lubos Rendek <web@linuxconfig.org>
+MAINTAINER Eddymens <edmond@devless.io>
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -38,7 +38,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN rm -R /var/www/html
 RUN git clone https://github.com/DevlessTeam/DV-PHP-CORE.git html; cd html;composer install
 ADD .env /var/www/html
-RUN php artisan migrate
+RUN cd html;php artisan migrate
 RUN chmod -R 777 /var/www/html
 
 EXPOSE 80 3306
