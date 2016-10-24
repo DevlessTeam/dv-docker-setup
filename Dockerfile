@@ -27,7 +27,7 @@ RUN service mysql start; mysql -u root -e "CREATE USER 'admin'@'%' IDENTIFIED BY
 # MySQL configuration
 RUN sed -i 's/bind-address/#bind-address/' /etc/mysql/my.cnf
 
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 # Install software
 RUN apt-get install -y git
@@ -35,8 +35,10 @@ RUN apt-get install -y curl
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Pull in DevLess
-RUN rm -R /var/www/html;git clone https://github.com/DevlessTeam/DV-PHP-CORE.git html;composer install
-ADD cp .env /var/www/html
+RUN rm -R /var/www/html
+RUN git clone https://github.com/DevlessTeam/DV-PHP-CORE.git html
+RUN composer install
+ADD .env /var/www/html
 RUN php artisan migrate
 RUN chmod -R 777 /var/www/html
 
