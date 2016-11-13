@@ -8,7 +8,7 @@ RUN apt-get update
 RUN apt-get -y install supervisor php5-cgi mysql-server php5-mysql 
 
 # Extra package installation
-RUN apt-get -y install php5-gd php-apc php5-mcrypt
+RUN apt-get -y install php5-gd php-apc php5-mcrypt php5-curl
 
 # Nginx configuration
 ADD default /etc/nginx/sites-available/
